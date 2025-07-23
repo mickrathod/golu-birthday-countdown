@@ -3,57 +3,60 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Her Epic Birthday Countdown</title>
+  <title>Golu's Romantic Birthday Countdown</title>
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <style>
     body {
       margin: 0;
       font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #ff6f91, #ffccde, #a1eafb);
+      background: linear-gradient(135deg, #ff6f91, #ffd1dc, #ffb6c1);
       color: #333;
       text-align: center;
       padding: 2rem;
       min-height: 100vh;
       overflow-x: hidden;
       position: relative;
-      animation: bgGlow 10s infinite ease-in-out;
+      animation: bgGlow 8s infinite ease-in-out;
     }
 
     @keyframes bgGlow {
-      0%, 100% { background: linear-gradient(135deg, #ff6f91, #ffccde, #a1eafb); }
-      50% { background: linear-gradient(135deg, #ffccde, #a1eafb, #ff6f91); }
+      0%, 100% { background: linear-gradient(135deg, #ff6f91, #ffd1dc, #ffb6c1); }
+      50% { background: linear-gradient(135deg, #ffb6c1, #ff6f91, #ffd1dc); }
     }
 
-    /* Floating Balloons */
-    .balloons {
+    /* Floating Hearts */
+    .hearts {
       position: fixed;
-      bottom: 0;
+      top: 0;
+      left: 0;
       width: 100%;
+      height: 100%;
       pointer-events: none;
       z-index: 0;
     }
 
-    .balloon {
+    .heart {
       position: absolute;
-      font-size: 2rem;
-      animation: floatBalloon 12s linear infinite;
-      opacity: 0.7;
+      font-size: 1.8rem;
+      color: #e91e63;
+      opacity: 0.5;
+      animation: floatHeart 12s infinite ease-in-out;
     }
 
-    @keyframes floatBalloon {
-      0% { transform: translateY(100vh) rotate(0deg); opacity: 0.5; }
+    @keyframes floatHeart {
+      0% { transform: translateY(100vh) scale(0.7); opacity: 0.3; }
       50% { opacity: 0.9; }
-      100% { transform: translateY(-100vh) rotate(360deg); opacity: 0.3; }
+      100% { transform: translateY(-100vh) scale(1.3); opacity: 0.2; }
     }
 
     h1 {
       font-family: 'Pacifico', cursive;
-      color: #d81b60;
-      font-size: 3rem;
-      margin-bottom: 1.5rem;
-      text-shadow: 3px 3px 6px rgba(0,0,0,0.2);
-      animation: pulseText 2s infinite ease-in-out;
+      color: #c2185b;
+      font-size: 4.2rem;
+      margin: 2rem 0;
+      text-shadow: 5px 5px 12px rgba(0,0,0,0.3);
+      animation: pulseText 1.8s infinite ease-in-out;
     }
 
     @keyframes pulseText {
@@ -61,101 +64,212 @@
       50% { transform: scale(1.05); }
     }
 
-    .countdown {
-      font-size: 3rem;
-      font-weight: 700;
-      margin: 2rem 0;
-      color: #c2185b;
-      background: rgba(255,255,255,0.9);
-      padding: 1.5rem;
-      border-radius: 20px;
-      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
-      animation: bounceIn 1s ease-out;
+    /* Separated Countdown Cards */
+    .countdown-container {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      margin: 2.5rem auto;
+      max-width: 900px;
     }
 
-    .love-note, .gallery, .playlist, .surprise {
-      background: rgba(255,255,255,0.95);
+    .countdown-card {
+      background: linear-gradient(135deg, #ff80ab, #fce4ec);
       border-radius: 25px;
-      padding: 2.5rem;
-      margin: 2.5rem auto;
-      max-width: 800px;
-      box-shadow: 0 12px 40px rgba(0,0,0,0.2);
+      padding: 2rem;
+      width: 180px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      animation: bounceIn 1s ease-out;
+      border: 3px solid #f06292;
+    }
+
+    .countdown-card:hover {
+      transform: translateY(-10px) scale(1.05);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+    }
+
+    .countdown-card .value {
+      font-size: 3.8rem;
+      font-weight: 700;
+      color: #e91e63;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .countdown-card .label {
+      font-size: 1.3rem;
+      color: #444;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .love-note, .magic-star-jar, .reasons, .surprise {
+      background: rgba(255,255,255,0.95);
+      border-radius: 30px;
+      padding: 3rem;
+      margin: 3rem auto;
+      max-width: 900px;
+      box-shadow: 0 15px 50px rgba(0,0,0,0.2);
       transition: transform 0.4s ease, box-shadow 0.4s ease;
       position: relative;
       z-index: 1;
+      border: 1px solid #ff80ab;
     }
 
-    .love-note:hover, .gallery:hover, .playlist:hover, .surprise:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+    .love-note:hover, .magic-star-jar:hover, .reasons:hover, .surprise:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 25px 60px rgba(0,0,0,0.3);
     }
 
     .love-note p {
-      font-size: 1.2rem;
-      line-height: 1.8;
+      font-size: 1.5rem;
+      line-height: 2;
       color: #444;
       animation: fadeIn 1.5s ease-in;
     }
 
-    .gallery img {
-      width: 100%;
-      border-radius: 15px;
-      margin: 0.8rem 0;
-      transition: transform 0.4s ease, opacity 0.4s ease;
-    }
-
-    .gallery img:hover {
-      transform: scale(1.08);
-      opacity: 0.95;
-    }
-
-    /* Gift Box Animation */
-    .gift-box {
-      width: 150px;
-      height: 150px;
-      margin: 2rem auto;
+    /* Magic Star Jar */
+    .magic-star-jar .jar {
+      width: 220px;
+      height: 280px;
+      margin: 2.5rem auto;
       position: relative;
       cursor: pointer;
+      transition: transform 0.3s ease;
     }
 
-    .gift-box .box {
-      width: 100%;
-      height: 100%;
-      background: #e91e63;
-      border-radius: 10px;
-      position: relative;
-      transition: transform 0.5s ease;
+    .magic-star-jar .jar:hover {
+      transform: scale(1.15);
     }
 
-    .gift-box .lid {
+    .magic-star-jar .jar-body {
       width: 100%;
-      height: 40px;
-      background: #c2185b;
+      height: 220px;
+      background: linear-gradient(135deg, #ff80ab, #f06292, #ffd1dc);
+      border-radius: 50px 50px 80px 80px;
       position: absolute;
-      top: -20px;
-      border-radius: 10px 10px 0 0;
-      transition: transform 0.5s ease;
+      bottom: 0;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
     }
 
-    .gift-box.opened .box {
-      transform: translateY(20px);
+    .magic-star-jar .jar-body::before {
+      content: '💖';
+      position: absolute;
+      font-size: 4rem;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation: twinkle 1s infinite ease-in-out;
     }
 
-    .gift-box.opened .lid {
-      transform: translateY(-100px) rotate(10deg);
+    .magic-star-jar .jar-lid {
+      width: 160px;
+      height: 70px;
+      background: linear-gradient(135deg, #c2185b, #e91e63);
+      border-radius: 30px;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      box-shadow: 0 8px 15px rgba(0,0,0,0.3);
     }
 
-    .gift-message {
+    .magic-star-jar .jar.opened .jar-lid {
+      transform: translateX(-50%) translateY(-120px) rotate(10deg);
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.3; transform: translate(-50%, -50%) scale(0.7); }
+      50% { opacity: 1; transform: translate(-50%, -50%) scale(1.3); }
+    }
+
+    .magic-message {
       display: none;
-      font-size: 1.3rem;
-      color: #d81b60;
+      font-size: 1.6rem;
+      color: #c2185b;
       font-weight: 600;
-      margin-top: 1rem;
+      margin-top: 1.5rem;
       animation: fadeIn 1s ease-in;
     }
 
-    .gift-box.opened + .gift-message {
+    .magic-message.active {
       display: block;
+    }
+
+    /* Reasons I Love You */
+    .reasons ul {
+      list-style: none;
+      padding: 0;
+      font-size: 1.4rem;
+      color: #444;
+      line-height: 2.3;
+    }
+
+    .reasons li::before {
+      content: '💖 ';
+      color: #e91e63;
+    }
+
+    /* Animated Cake */
+    .cake {
+      display: none;
+      width: 300px;
+      height: 300px;
+      margin: 2.5rem auto;
+      position: relative;
+      animation: bounceIn 1s ease-out;
+    }
+
+    .cake.active {
+      display: block;
+    }
+
+    .cake .base {
+      width: 100%;
+      height: 180px;
+      background: #ffb3d0;
+      border-radius: 35px;
+      position: absolute;
+      bottom: 0;
+    }
+
+    .cake .frosting {
+      width: 100%;
+      height: 90px;
+      background: #fce4ec;
+      border-radius: 35px 35px 0 0;
+      position: absolute;
+      top: 90px;
+    }
+
+    .cake .candle {
+      width: 40px;
+      height: 100px;
+      background: #fff;
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 12px;
+    }
+
+    .cake .flame {
+      width: 20px;
+      height: 40px;
+      background: #ffca28;
+      position: absolute;
+      top: -5px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 50%;
+      animation: flicker 0.5s infinite alternate;
+    }
+
+    @keyframes flicker {
+      0% { transform: translateX(-50%) scale(1); }
+      100% { transform: translateX(-50%) scale(1.3); }
     }
 
     @keyframes fadeIn {
@@ -169,77 +283,132 @@
       100% { transform: scale(1); }
     }
 
+    /* Audio Player */
+    .audio-player {
+      display: none;
+    }
+
     /* Responsive Design */
     @media (max-width: 600px) {
-      h1 { font-size: 2.2rem; }
-      .countdown { font-size: 2rem; }
-      .love-note, .gallery, .playlist, .surprise { padding: 1.8rem; margin: 1.8rem 1rem; }
-      .gift-box { width: 120px; height: 120px; }
+      h1 { font-size: 3.2rem; }
+      .countdown-card { width: 150px; }
+      .countdown-card .value { font-size: 3.2rem; }
+      .love-note, .magic-star-jar, .reasons, .surprise {
+        padding: 2rem;
+        margin: 2rem 1rem;
+      }
+      .jar { width: 180px; height: 240px; }
+      .cake { width: 240px; height: 240px; }
     }
   </style>
 </head>
 <body>
-  <h1>Her Magical Birthday Countdown! 🎉💖</h1>
-  <div class="countdown" id="countdown"></div>
+  <h1>Golu's Romantic Birthday Countdown! 💖🎂</h1>
+
+  <div class="countdown-container">
+    <div class="countdown-card">
+      <div class="value" id="days">0</div>
+      <div class="label">Days</div>
+    </div>
+    <div class="countdown-card">
+      <div class="value" id="hours">0</div>
+      <div class="label">Hours</div>
+    </div>
+    <div class="countdown-card">
+      <div class="value" id="minutes">0</div>
+      <div class="label">Minutes</div>
+    </div>
+    <div class="countdown-card">
+      <div class="value" id="seconds">0</div>
+      <div class="label">Seconds</div>
+    </div>
+  </div>
 
   <div class="love-note">
-    <h2>A Note Just for You</h2>
-    <p>My love, you're the spark in every moment, and I’m beyond excited to make your birthday unforgettable! You light up my world! 💕</p>
+    <h2>My Dearest Golu</h2>
+    <p>Golu, your beautiful smile melts my heart, and your enchanting eyes make me fall in love with you every day. I’m counting down to celebrate every perfect thing about you! I love you endlessly! 💕</p>
   </div>
 
-  <div class="gallery">
-    <h2>Our Cherished Moments</h2>
-    <img src="https://images.unsplash.com/photo-1519748771451-a94c596fad67?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Memory 1" />
-    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Memory 2" />
-    <img src="https://images.unsplash.com/photo-1520962922320-2038eebab146?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Memory 3" />
+  <div class="magic-star-jar">
+    <h2>Golu's Starry Love Jar</h2>
+    <p>Tap the jar for a loving wish, Golu!</p>
+    <div class="jar" id="magic-jar">
+      <div class="jar-lid"></div>
+      <div class="jar-body"></div>
+    </div>
+    <p class="magic-message" id="magic-message"></p>
   </div>
 
-  <div class="playlist">
-    <h2>Your Happy Vibes Playlist</h2>
-    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/41Gf6TKg41Xsg08vZiB6IS?utm_source=generator" width="100%" height="152" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+  <div class="reasons">
+    <h2>Why I Love You, Golu</h2>
+    <ul>
+      <li>Your smile is so beautiful, it lights up my entire world.</li>
+      <li>Your eyes are so captivating, I could gaze into them forever.</li>
+      <li>I love you so much, Golu, my heart races every time I think of you.</li>
+      <li>Everything about you is perfect, from your laughter to your soul.</li>
+      <li>I love every single thing about you, Golu, you’re my entire universe!</li>
+    </ul>
   </div>
 
   <div class="surprise">
-    <h2>Your Birthday Surprise 🎁</h2>
-    <p id="surprise-text">A magical surprise is almost here...</p>
-    <div class="gift-box" id="gift-box">
-      <div class="lid"></div>
-      <div class="box"></div>
+    <h2>Golu's Magical Surprise 🎉</h2>
+    <p id="surprise-text">A romantic surprise awaits you, Golu...</p>
+    <div class="cake" id="cake">
+      <div class="base"></div>
+      <div class="frosting"></div>
+      <div class="candle">
+        <div class="flame"></div>
+      </div>
     </div>
-    <p class="gift-message" id="gift-message">You're getting a special day filled with love, laughter, and a secret adventure! Check your messages! 💌</p>
-    <button id="surprise-btn" style="display: none; padding: 1rem 2rem; font-size: 1.1rem; background: #e91e63; color: white; border: none; border-radius: 15px; cursor: pointer; margin-top: 1.5rem;">Reveal Your Surprise</button>
+    <button id="surprise-btn" style="display: none; padding: 1rem 2rem; font-size: 1.2rem; background: #e91e63; color: white; border: none; border-radius: 15px; cursor: pointer; margin-top: 1.5rem;">Celebrate Golu’s Day!</button>
   </div>
 
-  <div class="balloons">
-    <span class="balloon" style="left: 10%; animation-delay: 0s;">🎈</span>
-    <span class="balloon" style="left: 30%; animation-delay: 3s;">🎈</span>
-    <span class="balloon" style="left: 50%; animation-delay: 6s;">🎈</span>
-    <span class="balloon" style="left: 70%; animation-delay: 9s;">🎈</span>
-    <span class="balloon" style="left: 90%; animation-delay: 12s;">🎈</span>
+  <div class="hearts">
+    <span class="heart" style="left: 10%; animation-delay: 0s;">💖</span>
+    <span class="heart" style="left: 25%; animation-delay: 2s;">💕</span>
+    <span class="heart" style="left: 40%; animation-delay: 4s;">💗</span>
+    <span class="heart" style="left: 60%; animation-delay: 6s;">💓</span>
+    <span class="heart" style="left: 80%; animation-delay: 8s;">💘</span>
+  </div>
+
+  <div class="audio-player">
+    <audio id="background-music" autoplay loop>
+      <source src="https://www.xaiusercontent.com/tumhiho.mp3" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
   </div>
 
   <script>
-    const countdown = document.getElementById('countdown');
+    const daysEl = document.getElementById('days');
+    const hoursEl = document.getElementById('hours');
+    const minutesEl = document.getElementById('minutes');
+    const secondsEl = document.getElementById('seconds');
     const surpriseText = document.getElementById('surprise-text');
     const surpriseBtn = document.getElementById('surprise-btn');
-    const giftBox = document.getElementById('gift-box');
-    const giftMessage = document.getElementById('gift-message');
+    const cake = document.getElementById('cake');
+    const magicJar = document.getElementById('magic-jar');
+    const magicMessage = document.getElementById('magic-message');
     const birthdayDate = new Date('2025-08-11T00:00:00');
+
+    const messages = [
+      "Golu, your smile is my favorite kind of magic! 💖",
+      "Your eyes, Golu, make my heart flutter every time! 😍",
+      "Golu, I’m so in love with every little thing about you! 💕",
+      "Your laughter, Golu, is my sweetest melody! 🎶",
+      "Golu, you’re my forever dream come true! ✨"
+    ];
+
+    let messageIndex = 0;
 
     function launchConfetti() {
       confetti({
-        particleCount: 150,
-        spread: 90,
+        particleCount: 400,
+        spread: 180,
         origin: { y: 0.5 },
-        colors: ['#e91e63', '#ff80ab', '#f06292', '#fce4ec', '#a1eafb'],
-        shapes: ['star', 'circle'],
-        scalar: 1.2
+        colors: ['#e91e63', '#ff80ab', '#f06292', '#fce4ec', '#ffb6c1'],
+        shapes: ['heart', 'circle', 'star'],
+        scalar: 1.7
       });
-    }
-
-    function openGiftBox() {
-      giftBox.classList.add('opened');
-      launchConfetti();
     }
 
     function updateCountdown() {
@@ -247,12 +416,16 @@
       const diff = birthdayDate - now;
 
       if (diff <= 0) {
-        countdown.innerText = "🎉 It's Your Birthday! 🎉";
-        surpriseText.innerText = "Time for your magical surprise!";
+        daysEl.innerText = '🎂';
+        hoursEl.innerText = '🎉';
+        minutesEl.innerText = '🥳';
+        secondsEl.innerText = '💖';
+        surpriseText.innerText = "Happy Birthday, My Golu!";
         surpriseBtn.style.display = 'block';
-        giftBox.style.display = 'block';
-        openGiftBox();
-        setInterval(launchConfetti, 2500);
+        cake.classList.add('active');
+        magicJar.classList.add('opened');
+        launchConfetti();
+        setInterval(launchConfetti, 1200);
         return;
       }
 
@@ -261,20 +434,31 @@
       const minutes = Math.floor((diff / (1000 * 60)) % 60);
       const seconds = Math.floor((diff / 1000) % 60);
 
-      countdown.innerText = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-      giftBox.style.display = 'block';
+      daysEl.innerText = days;
+      hoursEl.innerText = hours;
+      minutesEl.innerText = minutes;
+      secondsEl.innerText = seconds;
     }
 
-    giftBox.addEventListener('click', () => {
-      if (birthdayDate - new Date() <= 0) {
-        openGiftBox();
-      }
+    magicJar.addEventListener('click', () => {
+      magicMessage.textContent = messages[messageIndex];
+      magicMessage.classList.add('active');
+      magicJar.classList.add('opened');
+      setTimeout(() => magicJar.classList.remove('opened'), 600);
+      messageIndex = (messageIndex + 1) % messages.length;
+      launchConfetti();
     });
 
     surpriseBtn.addEventListener('click', () => {
-      surpriseText.innerText = "A day full of love and surprises awaits! Check your messages! 💖";
-      openGiftBox();
+      surpriseText.innerText = "Golu, my love, your special day is here! Check your messages for a romantic adventure! 💌";
       launchConfetti();
+    });
+
+    // Auto-play music with error handling
+    const audio = document.getElementById('background-music');
+    audio.volume = 0.5; // Set volume to 50%
+    audio.play().catch(error => {
+      console.log("Audio playback failed:", error);
     });
 
     setInterval(updateCountdown, 1000);
