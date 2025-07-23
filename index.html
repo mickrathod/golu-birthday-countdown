@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Birthday Countdown</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #ffe0f0, #ffd1dc);
+      color: #444;
+      text-align: center;
+      padding: 2rem;
+    }
+    h1 {
+      font-family: 'Pacifico', cursive;
+      color: #e91e63;
+      margin-bottom: 0.5rem;
+    }
+    .countdown {
+      font-size: 2rem;
+      margin: 1rem 0;
+      font-weight: bold;
+    }
+    .love-note, .gallery, .playlist, .surprise {
+      background: white;
+      border-radius: 20px;
+      padding: 1.5rem;
+      margin: 2rem auto;
+      max-width: 600px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    img {
+      width: 100%;
+      border-radius: 10px;
+      margin-top: 1rem;
+    }
+    .hearts {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      pointer-events: none;
+      animation: floatHearts 20s linear infinite;
+    }
+    @keyframes floatHearts {
+      0% { transform: translateY(100%); }
+      100% { transform: translateY(-100%); }
+    }
+  </style>
+</head>
+<body>
+  <h1>Counting down to the most special day 💖</h1>
+  <div class="countdown" id="countdown"></div>
+
+  <div class="love-note">
+    <h2>Love Note</h2>
+    <p>Every second with you is precious. I can't wait to celebrate you on your special day. You mean the world to me ❤️</p>
+  </div>
+
+  <div class="gallery">
+    <h2>Our Memories</h2>
+    <img src="https://via.placeholder.com/500x300?text=Our+Photo+1" alt="Photo 1" />
+    <img src="https://via.placeholder.com/500x300?text=Our+Photo+2" alt="Photo 2" />
+  </div>
+
+  <div class="playlist">
+    <h2>Your Playlist</h2>
+    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/41Gf6TKg41Xsg08vZiB6IS?utm_source=generator" width="100%" height="152" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+  </div>
+
+  <div class="surprise">
+    <h2>Surprise 🎁</h2>
+    <p id="surprise-text">Surprise coming soon...</p>
+  </div>
+
+  <div class="hearts">❤️ 💕 💖 💘 💗</div>
+
+  <script>
+    const countdown = document.getElementById('countdown');
+    const surpriseText = document.getElementById('surprise-text');
+    const birthdayDate = new Date('2025-08-11T00:00:00');
+
+    function updateCountdown() {
+      const now = new Date();
+      const diff = birthdayDate - now;
+
+      if (diff <= 0) {
+        countdown.innerText = "🎉 It's her birthday! 🎉";
+        surpriseText.innerText = "Check your messages for a surprise! 💌";
+        return;
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      countdown.innerText = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
+</body>
+</html>
