@@ -17,7 +17,7 @@
       min-height: 100vh;
       overflow-x: hidden;
       position: relative;
-      animation: bgGlow 5s infinite ease-in-out;
+      animation: bgGlow 4s infinite ease-in-out;
     }
 
     @keyframes bgGlow {
@@ -38,9 +38,9 @@
 
     .romantic-icon {
       position: absolute;
-      font-size: 1.8rem;
+      font-size: 2rem;
       opacity: 0.7;
-      animation: floatIcon 9s infinite ease-in-out;
+      animation: floatIcon 8s infinite ease-in-out;
     }
 
     .rose { color: #d81b60; }
@@ -50,15 +50,15 @@
     @keyframes floatIcon {
       0% { transform: translateY(100vh) scale(0.6); opacity: 0.5; }
       50% { opacity: 1; }
-      100% { transform: translateY(-100vh) scale(1.4); opacity: 0.4; }
+      100% { transform: translateY(-100vh) scale(1.5); opacity: 0.4; }
     }
 
     h1 {
       font-family: 'Great Vibes', cursive;
       color: #c2185b;
-      font-size: 4rem;
+      font-size: 4.2rem;
       margin: 1.5rem 0;
-      text-shadow: 5px 5px 12px rgba(0,0,0,0.3);
+      text-shadow: 6px 6px 15px rgba(0,0,0,0.3);
       animation: pulseText 1.8s infinite ease-in-out;
     }
 
@@ -83,7 +83,7 @@
       padding: 1.5rem;
       width: 20%;
       min-width: 90px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.25);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       animation: bounceIn 1s ease-out;
       border: 3px solid #ff4d88;
@@ -91,18 +91,18 @@
 
     .countdown-card:hover {
       transform: translateY(-8px) scale(1.05);
-      box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.35);
     }
 
     .countdown-card .value {
-      font-size: 2.8rem;
+      font-size: 3rem;
       font-weight: 700;
       color: #e91e63;
       text-shadow: 2px 2px 5px rgba(0,0,0,0.1);
     }
 
     .countdown-card .label {
-      font-size: 1rem;
+      font-size: 1.1rem;
       color: #444;
       text-transform: uppercase;
       font-weight: 600;
@@ -114,7 +114,7 @@
       padding: 2rem;
       margin: 2rem 1rem;
       max-width: 90%;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+      box-shadow: 0 12px 45px rgba(0,0,0,0.25);
       transition: transform 0.4s ease, box-shadow 0.4s ease;
       position: relative;
       z-index: 1;
@@ -123,7 +123,7 @@
 
     .love-note:hover, .magic-star-jar:hover, .reasons:hover, .love-letter:hover, .memories:hover, .playlist:hover, .surprise:hover {
       transform: translateY(-10px);
-      box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+      box-shadow: 0 25px 60px rgba(0,0,0,0.35);
     }
 
     .love-note p {
@@ -135,8 +135,8 @@
 
     /* Magic Star Jar */
     .magic-star-jar .jar {
-      width: 200px;
-      height: 260px;
+      width: 220px;
+      height: 280px;
       margin: 2rem auto;
       position: relative;
       cursor: pointer;
@@ -149,7 +149,7 @@
 
     .magic-star-jar .jar-body {
       width: 100%;
-      height: 200px;
+      height: 220px;
       background: linear-gradient(135deg, #ff80ab, #f06292, #ffe6ec);
       border-radius: 50px 50px 70px 70px;
       position: absolute;
@@ -161,7 +161,7 @@
     .magic-star-jar .jar-body::before {
       content: '💌';
       position: absolute;
-      font-size: 3.5rem;
+      font-size: 4rem;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
@@ -169,8 +169,8 @@
     }
 
     .magic-star-jar .jar-lid {
-      width: 140px;
-      height: 60px;
+      width: 150px;
+      height: 65px;
       background: linear-gradient(135deg, #c2185b, #e91e63);
       border-radius: 25px;
       position: absolute;
@@ -254,7 +254,7 @@
     .slide-text {
       font-size: 1.2rem;
       color: #444;
-      background: rgba(255,255,255,0.8);
+      background: rgba(255,255,255,0.85);
       padding: 1rem;
       margin: 1rem auto;
       border-radius: 10px;
@@ -272,8 +272,8 @@
     /* Animated Cake */
     .cake {
       display: none;
-      width: 240px;
-      height: 240px;
+      width: 260px;
+      height: 260px;
       margin: 2rem auto;
       position: relative;
       animation: bounceIn 1s ease-out;
@@ -285,7 +285,7 @@
 
     .cake .base {
       width: 100%;
-      height: 150px;
+      height: 160px;
       background: #ff8ab6;
       border-radius: 25px;
       position: absolute;
@@ -294,7 +294,7 @@
 
     .cake .frosting {
       width: 100%;
-      height: 80px;
+      height: 90px;
       background: #fce4ec;
       border-radius: 25px 25px 0 0;
       position: absolute;
@@ -351,7 +351,7 @@
         padding: 1rem;
       }
       .countdown-card .value {
-        font-size: 2rem;
+        font-size: 2.2rem;
       }
       .countdown-card .label {
         font-size: 0.9rem;
@@ -455,20 +455,17 @@
     <h2>Our Memories, Golu 📸</h2>
     <div class="slideshow" id="slideshow">
       <div class="slide" data-index="0">
-        <div class="slide-text">Our first meeting, Golu, when your smile made my heart skip a beat! 💖</div>
+        <div class="slide-text">Our first kiss, Golu, a magical moment that set my heart on fire! 😘🌹</div>
       </div>
       <div class="slide" data-index="1">
-        <div class="slide-text">The day we ate together, laughing and sharing our dreams! 🥰💕</div>
-      </div>
-      <div class="slide" data-index="2">
-        <div class="slide-text">Our first kiss 💋, hug 🤗,Golu, a moment I’ll cherish forever! 😘🌹</div>
+        <div class="slide-text">Our first hug, Golu, when I felt your warmth and knew I was home! 🤗💕</div>
       </div>
     </div>
   </div>
 
   <div class="playlist">
     <h2>Golu's Romantic Playlist 🎶</h2>
-    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DX0i61t3E5Lpr?utm_source=generator" width="100%" height="152" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/41Gf6TKg41Xsg08vZiB6IS?utm_source=generator" width="100%" height="152" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
   </div>
 
   <div class="surprise">
@@ -494,6 +491,7 @@
     <span class="romantic-icon rose" style="left: 70%; animation-delay: 6s;">🌹</span>
     <span class="romantic-icon letter" style="left: 80%; animation-delay: 7s;">💌</span>
     <span class="romantic-icon sparkle" style="left: 90%; animation-delay: 8s;">✨</span>
+    <span class="romantic-icon rose" style="left: 15%; animation-delay: 9s;">🌹</span>
   </div>
 
   <script>
@@ -523,12 +521,12 @@
 
     function launchConfetti() {
       confetti({
-        particleCount: 600,
-        spread: 220,
+        particleCount: 700,
+        spread: 240,
         origin: { y: 0.5 },
         colors: ['#e91e63', '#ff80ab', '#f06292', '#fce4ec', '#ff8ab6'],
         shapes: ['heart', 'circle', 'star'],
-        scalar: 1.9
+        scalar: 2
       });
     }
 
@@ -546,7 +544,7 @@
         cake.classList.add('active');
         magicJar.classList.add('opened');
         launchConfetti();
-        setInterval(launchConfetti, 800);
+        setInterval(launchConfetti, 700);
         return;
       }
 
