@@ -3,87 +3,256 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Birthday Countdown</title>
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins&display=swap" rel="stylesheet">
+  <title>Her Epic Birthday Countdown</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <style>
     body {
       margin: 0;
       font-family: 'Poppins', sans-serif;
-      background: linear-gradient(to right, #ffe0f0, #ffd1dc);
-      color: #444;
+      background: linear-gradient(135deg, #ff6f91, #ffccde, #a1eafb);
+      color: #333;
       text-align: center;
       padding: 2rem;
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+      animation: bgGlow 10s infinite ease-in-out;
     }
-    h1 {
-      font-family: 'Pacifico', cursive;
-      color: #e91e63;
-      margin-bottom: 0.5rem;
+
+    @keyframes bgGlow {
+      0%, 100% { background: linear-gradient(135deg, #ff6f91, #ffccde, #a1eafb); }
+      50% { background: linear-gradient(135deg, #ffccde, #a1eafb, #ff6f91); }
     }
-    .countdown {
-      font-size: 2rem;
-      margin: 1rem 0;
-      font-weight: bold;
-    }
-    .love-note, .gallery, .playlist, .surprise {
-      background: white;
-      border-radius: 20px;
-      padding: 1.5rem;
-      margin: 2rem auto;
-      max-width: 600px;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-    }
-    img {
-      width: 100%;
-      border-radius: 10px;
-      margin-top: 1rem;
-    }
-    .hearts {
+
+    /* Floating Balloons */
+    .balloons {
       position: fixed;
       bottom: 0;
       width: 100%;
       pointer-events: none;
-      animation: floatHearts 20s linear infinite;
+      z-index: 0;
     }
-    @keyframes floatHearts {
-      0% { transform: translateY(100%); }
-      100% { transform: translateY(-100%); }
+
+    .balloon {
+      position: absolute;
+      font-size: 2rem;
+      animation: floatBalloon 12s linear infinite;
+      opacity: 0.7;
+    }
+
+    @keyframes floatBalloon {
+      0% { transform: translateY(100vh) rotate(0deg); opacity: 0.5; }
+      50% { opacity: 0.9; }
+      100% { transform: translateY(-100vh) rotate(360deg); opacity: 0.3; }
+    }
+
+    h1 {
+      font-family: 'Pacifico', cursive;
+      color: #d81b60;
+      font-size: 3rem;
+      margin-bottom: 1.5rem;
+      text-shadow: 3px 3px 6px rgba(0,0,0,0.2);
+      animation: pulseText 2s infinite ease-in-out;
+    }
+
+    @keyframes pulseText {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    .countdown {
+      font-size: 3rem;
+      font-weight: 700;
+      margin: 2rem 0;
+      color: #c2185b;
+      background: rgba(255,255,255,0.9);
+      padding: 1.5rem;
+      border-radius: 20px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+      animation: bounceIn 1s ease-out;
+    }
+
+    .love-note, .gallery, .playlist, .surprise {
+      background: rgba(255,255,255,0.95);
+      border-radius: 25px;
+      padding: 2.5rem;
+      margin: 2.5rem auto;
+      max-width: 800px;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.2);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      position: relative;
+      z-index: 1;
+    }
+
+    .love-note:hover, .gallery:hover, .playlist:hover, .surprise:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+    }
+
+    .love-note p {
+      font-size: 1.2rem;
+      line-height: 1.8;
+      color: #444;
+      animation: fadeIn 1.5s ease-in;
+    }
+
+    .gallery img {
+      width: 100%;
+      border-radius: 15px;
+      margin: 0.8rem 0;
+      transition: transform 0.4s ease, opacity 0.4s ease;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.08);
+      opacity: 0.95;
+    }
+
+    /* Gift Box Animation */
+    .gift-box {
+      width: 150px;
+      height: 150px;
+      margin: 2rem auto;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .gift-box .box {
+      width: 100%;
+      height: 100%;
+      background: #e91e63;
+      border-radius: 10px;
+      position: relative;
+      transition: transform 0.5s ease;
+    }
+
+    .gift-box .lid {
+      width: 100%;
+      height: 40px;
+      background: #c2185b;
+      position: absolute;
+      top: -20px;
+      border-radius: 10px 10px 0 0;
+      transition: transform 0.5s ease;
+    }
+
+    .gift-box.opened .box {
+      transform: translateY(20px);
+    }
+
+    .gift-box.opened .lid {
+      transform: translateY(-100px) rotate(10deg);
+    }
+
+    .gift-message {
+      display: none;
+      font-size: 1.3rem;
+      color: #d81b60;
+      font-weight: 600;
+      margin-top: 1rem;
+      animation: fadeIn 1s ease-in;
+    }
+
+    .gift-box.opened + .gift-message {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes bounceIn {
+      0% { transform: scale(0.7); opacity: 0; }
+      60% { transform: scale(1.1); opacity: 1; }
+      100% { transform: scale(1); }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 600px) {
+      h1 { font-size: 2.2rem; }
+      .countdown { font-size: 2rem; }
+      .love-note, .gallery, .playlist, .surprise { padding: 1.8rem; margin: 1.8rem 1rem; }
+      .gift-box { width: 120px; height: 120px; }
     }
   </style>
 </head>
 <body>
-  <h1>Counting down to the most special day 💖</h1>
+  <h1>Her Magical Birthday Countdown! 🎉💖</h1>
   <div class="countdown" id="countdown"></div>
 
   <div class="love-note">
-    <h2>Love Note</h2>
-    <p>Every second with you is precious. I can't wait to celebrate you on your special day. You mean the world to me ❤️</p>
+    <h2>A Note Just for You</h2>
+    <p>My love, you're the spark in every moment, and I’m beyond excited to make your birthday unforgettable! You light up my world! 💕</p>
   </div>
 
+  <div class="gallery">
+    <h2>Our Cherished Moments</h2>
+    <img src="https://images.unsplash.com/photo-1519748771451-a94c596fad67?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Memory 1" />
+    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Memory 2" />
+    <img src="https://images.unsplash.com/photo-1520962922320-2038eebab146?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Memory 3" />
+  </div>
 
   <div class="playlist">
-    <h2>Your Playlist</h2>
+    <h2>Your Happy Vibes Playlist</h2>
     <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/41Gf6TKg41Xsg08vZiB6IS?utm_source=generator" width="100%" height="152" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
   </div>
 
   <div class="surprise">
-    <h2>Surprise 🎁</h2>
-    <p id="surprise-text">Surprise coming soon...</p>
+    <h2>Your Birthday Surprise 🎁</h2>
+    <p id="surprise-text">A magical surprise is almost here...</p>
+    <div class="gift-box" id="gift-box">
+      <div class="lid"></div>
+      <div class="box"></div>
+    </div>
+    <p class="gift-message" id="gift-message">You're getting a special day filled with love, laughter, and a secret adventure! Check your messages! 💌</p>
+    <button id="surprise-btn" style="display: none; padding: 1rem 2rem; font-size: 1.1rem; background: #e91e63; color: white; border: none; border-radius: 15px; cursor: pointer; margin-top: 1.5rem;">Reveal Your Surprise</button>
   </div>
 
-  <div class="hearts">❤️ 💕 💖 💘 💗</div>
+  <div class="balloons">
+    <span class="balloon" style="left: 10%; animation-delay: 0s;">🎈</span>
+    <span class="balloon" style="left: 30%; animation-delay: 3s;">🎈</span>
+    <span class="balloon" style="left: 50%; animation-delay: 6s;">🎈</span>
+    <span class="balloon" style="left: 70%; animation-delay: 9s;">🎈</span>
+    <span class="balloon" style="left: 90%; animation-delay: 12s;">🎈</span>
+  </div>
 
   <script>
     const countdown = document.getElementById('countdown');
     const surpriseText = document.getElementById('surprise-text');
+    const surpriseBtn = document.getElementById('surprise-btn');
+    const giftBox = document.getElementById('gift-box');
+    const giftMessage = document.getElementById('gift-message');
     const birthdayDate = new Date('2025-08-11T00:00:00');
+
+    function launchConfetti() {
+      confetti({
+        particleCount: 150,
+        spread: 90,
+        origin: { y: 0.5 },
+        colors: ['#e91e63', '#ff80ab', '#f06292', '#fce4ec', '#a1eafb'],
+        shapes: ['star', 'circle'],
+        scalar: 1.2
+      });
+    }
+
+    function openGiftBox() {
+      giftBox.classList.add('opened');
+      launchConfetti();
+    }
 
     function updateCountdown() {
       const now = new Date();
       const diff = birthdayDate - now;
 
       if (diff <= 0) {
-        countdown.innerText = "🎉 It's her birthday! 🎉";
-        surpriseText.innerText = "Check your messages for a surprise! 💌";
+        countdown.innerText = "🎉 It's Your Birthday! 🎉";
+        surpriseText.innerText = "Time for your magical surprise!";
+        surpriseBtn.style.display = 'block';
+        giftBox.style.display = 'block';
+        openGiftBox();
+        setInterval(launchConfetti, 2500);
         return;
       }
 
@@ -93,7 +262,20 @@
       const seconds = Math.floor((diff / 1000) % 60);
 
       countdown.innerText = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+      giftBox.style.display = 'block';
     }
+
+    giftBox.addEventListener('click', () => {
+      if (birthdayDate - new Date() <= 0) {
+        openGiftBox();
+      }
+    });
+
+    surpriseBtn.addEventListener('click', () => {
+      surpriseText.innerText = "A day full of love and surprises awaits! Check your messages! 💖";
+      openGiftBox();
+      launchConfetti();
+    });
 
     setInterval(updateCountdown, 1000);
     updateCountdown();
